@@ -1,6 +1,12 @@
 pipeline {
   agent { label "${LABEL_NAME}" }
 
+  options {
+  timestamps
+  buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '1', numToKeepStr: '2')
+}
+
+
   environment {
     IMAGE_NAME = "trainerbpl10/webimg"
     IMAGE_TAG = "${BUILD_NUMBER}"
